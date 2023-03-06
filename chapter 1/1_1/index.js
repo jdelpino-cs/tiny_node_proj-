@@ -3,6 +3,9 @@
  */
 
 import { writeFileSync } from "fs";
+// Alternatively, you can use the older syntax: the dynamic import
+// using 'require()'. That's the only one that works with in REPL mode:
+//writeFileSync = require("fs").writeFileSync;
 
 const content = "Test content!";
 

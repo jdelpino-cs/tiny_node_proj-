@@ -1,5 +1,5 @@
-/**
- * Second version is to use built in fs module write to a CSV
+/* Second version is to use built in fs module write to a CSV
+/** This is the non-recursive version of the code
  */
 
 import { appendFileSync } from "fs";
@@ -42,15 +42,19 @@ class Person {
 }
 
 const startApp = async () => {
-  const person = new Person();
-  person.name = await readLineAsync("Contact Name: ");
-  person.number = await readLineAsync("Contact Number: ");
-  person.email = await readLineAsync("Contact Email: ");
+  while (true) {
+    const person = new Person();
+    person.name = await readLineAsync("Contact Name: ");
+    person.number = await readLineAsync("Contact Number: ");
+    person.email = await readLineAsync("Contact Email: ");
 
-  person.saveToCSV();
-  const response = await readLineAsync("Continue? [y to continue]: ");
-  if (response === "y") await startApp();
-  else readline.close();
+    person.saveToCSV();
+    const response = await readLineAsync("Continue? [y to continue]: ");
+    if (response !== "y") {
+      readline.close();
+      break;
+    }
+  }
 };
 
 startApp();
